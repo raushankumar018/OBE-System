@@ -1,0 +1,53 @@
+version: '3.9'
+
+services:
+  # ── Python FastAPI ML Backend ─────────────────────────────────────────────
+  python_api:
+    build:
+      context: ./obe_api
+      dockerfile: Dockerfile
+    container_name: obe_python_api
+    ports:
+      - "8000:8000"
+    env_file: ./obe_api/.env
+    volumes:
+      - ./obe_api/uploads:/app/uploads
+      - ./obe_api/outputs:/app/outputs
+    networks:
+      - obe_network
+    restart: unless-stopped
+
+  # ── Node.js / Express Auth + Proxy ───────────────────────────────────────
+  node_server:
+    build:
+      context: ./obe_mern/server
+      dockerfile: Dockerfile
+    container_name: obe_node_server
+    ports:
+      - "5000:5000"
+    env_file: ./obe_mern/server/.env
+    environment:
+      - PYTHON_API_URL=http://python_api:8000
+    depends_on:
+      - python_api
+    networks:
+      - obe_network
+    restart: unless-stopped
+
+  # ── React Frontend ────────────────────────────────────────────────────────
+  react_client:
+    build:
+      context: ./obe_mern/client
+      dockerfile: Dockerfile
+    container_name: obe_react_client
+    ports:
+      - "3000:80"
+    depends_on:
+      - node_server
+    networks:
+      - obe_network
+    restart: unless-stopped
+
+networks:
+  obe_network:
+    driver: bridge

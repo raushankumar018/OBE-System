@@ -1,0 +1,76 @@
+### Node / JavaScript
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+### Logs
+logs/
+*.log
+
+### Runtime
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+### Coverage
+coverage/
+*.lcov
+
+### Build outputs
+dist/
+build/
+client/dist/
+client/.vite/
+.vite/
+
+### Dependency directories (explicit)
+server/node_modules/
+client/node_modules/
+
+### Environment
+.env
+.env.*
+.env.local
+server/.env
+client/.env
+
+### Python
+.venv/
+venv/
+ENV/
+env/
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.coverage
+htmlcov/
+
+### Python outputs
+obe_api/uploads/
+obe_api/outputs/
+
+### Docker
+docker-compose.override.yml
+.env.build
+
+### Editors and IDEs
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+### OS files
+.DS_Store
+Thumbs.db
+
+### Misc
+.cache/
+coverage/
+coverage-html/
