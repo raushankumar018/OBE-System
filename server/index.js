@@ -1,4 +1,4 @@
-/**
+ /**
  * index.js — OBE MERN Server
  * Express + password auth + JWT auth + Proxy to Python FastAPI
  */
@@ -463,5 +463,7 @@ app.use((err, req, res, next) => {
     details: err?.stack || null,
   });
 });
+
+
 
 app.listen(PORT, () => console.log(`🚀 MERN Server running on http://localhost:${PORT}`));
