@@ -455,7 +455,7 @@ app.use((err, req, res, next) => {
       error: 'Upload too large',
       detail: err.message,
     });
-  }
+  } 
 
   const status = Number.isInteger(err?.status) ? err.status : 500;
   res.status(status).json({
