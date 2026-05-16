@@ -431,7 +431,7 @@ app.get('/api/template/marks/:sessionId', requireAuth, async (req, res) => {
 app.get('/api/user/sessions', requireAuth, async (req, res) => {
   try {
     const user = await User.findById(req.user.id);
-    res.json({ sessions: user.sessions || [] });
+    res.json({ sessions:user.sessions || [] });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
